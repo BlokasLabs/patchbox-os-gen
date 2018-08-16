@@ -2,3 +2,6 @@ IMG_NAME="Patchbox"
 FIRST_USER_NAME="patch"
 FIRST_USER_PASS="patch"
 HOSTNAME="patchbox"
+
+# From https://github.com/BlokasLabs/rpi-kernel-rt/releases
+RT_KERNEL_VERSION=v4.14.91-rt49
