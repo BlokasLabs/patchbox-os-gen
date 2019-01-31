@@ -1,1 +1,4 @@
-IMG_NAME='MODEP'
+IMG_NAME="Patchbox"
+FIRST_USER_NAME="patch"
+FIRST_USER_PASS="patch"
+HOSTNAME="patchbox"
