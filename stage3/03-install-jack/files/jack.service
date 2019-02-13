@@ -1,0 +1,15 @@
+[Unit]
+Description=JACK Server
+After=sound.target
+
+[Service]
+LimitRTPRIO=infinity
+LimitMEMLOCK=infinity
+Environment=JACK_NO_AUDIO_RESERVATION=1
+Environment=JACK_PROMISCUOUS_SERVER=jack
+ExecStart=/etc/jackdrc
+User=jack
+Group=jack
+
+[Install]
+WantedBy=multi-user.target

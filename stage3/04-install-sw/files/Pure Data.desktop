@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Pure Data
+Exec=puredata
+Type=Application
+Encoding=UTF-8
+Terminal=false
+Categories=audio;
+Icon=/home/pi/pd-0.49-0/tcl/pd.xpm
