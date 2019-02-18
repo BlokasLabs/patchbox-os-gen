@@ -13,3 +13,9 @@ sed -i 's/127.0.1.1.*'"$CURRENT_HOSTNAME"'/127.0.1.1\t'"$HOSTNAME"'/g' ${ROOTFS_
 on_chroot << EOF
 	ln -s /home/${FIRST_USER_NAME} /home/pi
 EOF
+
+# Boot to console by default.
+on_chroot << EOF
+	systemctl set-default multi-user.target
+	ln -fs /lib/systemd/system/getty@.service /etc/systemd/system/getty.target.wants/getty@tty1.service
+EOF
