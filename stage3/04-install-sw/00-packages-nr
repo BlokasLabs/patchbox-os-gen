@@ -1,13 +1,12 @@
 puredata
 pd-blokas
 git
-supercollider
+supercollider sc3-plugins sc3-plugins-server
 audacity
-raspberrypi-ui-mods
 patchage
 aconnectgui
 realvnc-vnc-server
-xserver-xorg-video-fbdev xserver-xorg xinit xserver-xorg-video-fbturbo
+xserver-xorg-video-fbdev xserver-xorg xinit xserver-xorg-video-fbturbo xserver-xorg-legacy
 lxde lxtask menu-xdg gksu
 xdg-utils gvfs-backends gvfs-fuse
 lightdm gnome-themes-standard-data gnome-icon-theme
