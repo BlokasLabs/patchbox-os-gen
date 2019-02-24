@@ -12,7 +12,7 @@ cp files/audacity.cfg ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.audacity-data/
 
 # Install desktop shortcuts.
 mkdir -p ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/Desktop
-cp files/*.desktop ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/Desktop/
+cp files/Desktop/*.desktop ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/Desktop/
 
 # For unknown reason SuperColliderIDE.desktop does not show up in system menu, unless it's renamed...
 mv ${ROOTFS_DIR}/usr/share/applications/SuperColliderIDE.desktop ${ROOTFS_DIR}/usr/share/applications/SuperCollider.desktop
