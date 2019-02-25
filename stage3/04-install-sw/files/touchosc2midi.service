@@ -1,9 +1,11 @@
 [Unit]
 Description=TouchOsc2Midi service
-After=sound.target
+After=network.target
 
 [Service]
 ExecStart=/usr/local/bin/touchosc2midi
+Restart=always
+RestartSec=15
 
 [Install]
 WantedBy=multi-user.target
