@@ -1,12 +1,12 @@
-on_chroot << EOF
-	if [ ! -d "/usr/local/patchbox-cli" ]; then
-		echo "Cloning patchbox-cli repository from https://github.com/BlokasLabs/patchbox-cli..."
-		git clone https://github.com/BlokasLabs/patchbox-cli.git /usr/local/patchbox-cli
-	else
-		echo "Updating patchbox-cli repository with latest stuff in https://github.com/BlokasLabs/patchbox-cli..."
-		cd /usr/local/patchbox-cli && git -c user.name="apt-get" -c user.email="apt@get" stash && git pull
-	fi
+if [ ! -d ${ROOTFS_DIR}/usr/local/patchbox-cli ]; then
+	echo "Cloning patchbox-cli repository from https://github.com/BlokasLabs/patchbox-cli..."
+	git clone https://github.com/BlokasLabs/patchbox-cli.git ${ROOTFS_DIR}/usr/local/patchbox-cli
+else
+	echo "Updating patchbox-cli repository with latest stuff in https://github.com/BlokasLabs/patchbox-cli..."
+	cd ${ROOTFS_DIR}/usr/local/patchbox-cli && git -c user.name="apt-get" -c user.email="apt@get" stash && git pull
+fi
 
+on_chroot << EOF
 	cd /usr/local/patchbox-cli && sudo pip install --editable .
 EOF
 

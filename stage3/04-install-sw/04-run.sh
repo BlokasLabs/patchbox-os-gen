@@ -8,4 +8,4 @@ echo mode: blank > ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.xscreensaver
 install -m 644 files/60-desktop-policy.conf ${ROOTFS_DIR}/etc/polkit-1/localauthority.conf.d/
 
 # Install hostapd.conf with changed SSID.
-install -m 644 files/hostapd.conf ${ROOT_FS_DIR}/etc/hostapd/hostapd.conf
+install -m 644 files/hostapd.conf ${ROOTFS_DIR}/etc/hostapd/hostapd.conf
