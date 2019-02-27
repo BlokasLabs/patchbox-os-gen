@@ -47,7 +47,7 @@
   <VALUE name="voices" val="48"/>
   <VALUE name="voices_thresh" val="100"/>
   <VALUE name="engine_rate" val="24000"/>
-  <VALUE name="multicore" val="1"/>
+  <VALUE name="multicore" val="2"/>
   <VALUE name="cpu_overload_detection" val="0"/>
   <VALUE name="subl" val=""/>
 </PROPERTIES>
