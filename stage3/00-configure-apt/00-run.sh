@@ -6,4 +6,3 @@ on_chroot apt-key add - < files/blokas.gpg.key
 on_chroot << EOF
 apt-get update
 EOF
-
