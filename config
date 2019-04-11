@@ -1,6 +1,6 @@
 IMG_NAME="Patchbox"
 FIRST_USER_NAME="patch"
-FIRST_USER_PASS="patch"
+FIRST_USER_PASS="blokaslabs"
 HOSTNAME="patchbox"
 
 # From https://github.com/BlokasLabs/rpi-kernel-rt/releases
