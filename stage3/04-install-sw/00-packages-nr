@@ -1,13 +1,14 @@
 puredata
 pd-blokas
 git
+touchosc2midi
 supercollider sc3-plugins sc3-plugins-server
 audacity
 patchage
 aconnectgui
 realvnc-vnc-server
 xserver-xorg-video-fbdev xserver-xorg xinit xserver-xorg-video-fbturbo xserver-xorg-legacy xscreensaver
-lxde lxtask menu-xdg gksu
+lxde lxtask menu-xdg # gksu
 xdg-utils gvfs-backends gvfs-fuse
 lightdm gnome-themes-standard-data gnome-icon-theme
 python-pip python-wheel python-setuptools python-all-dev
