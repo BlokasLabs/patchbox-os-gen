@@ -1,4 +1,7 @@
 chromium-browser rpi-chromium-mods
-raspberrypi-ui-mods
+raspberrypi-ui-mods gnome-themes-standard-data gtk2-engines
 #sonic-pi
 pianoteq-standard-trial
+blokas-puredata-patches
+patchbox
+patchbox-cli
