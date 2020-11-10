@@ -1,4 +1,3 @@
-FROM i386/debian:buster
 ARG BASE_IMAGE=debian:buster
 FROM ${BASE_IMAGE}
 
