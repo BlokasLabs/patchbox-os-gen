@@ -1,5 +1,6 @@
 # Set up graphical environment appearance.
 cp files/blokas-logo.png files/blokas-logo.svg ${ROOTFS_DIR}/usr/share/images/
+cp files/blokas-logo.svg ${ROOTFS_DIR}/usr/share/icons/PiXflat/32x32/apps/
 mkdir -p ${ROOTFS_DIR}/home/patch/.config/pcmanfm/LXDE-pi/
 cp files/desktop-items-0.conf ${ROOTFS_DIR}/home/patch/.config/pcmanfm/LXDE-pi/
 cp files/pi-greeter.conf ${ROOTFS_DIR}/etc/lightdm/
