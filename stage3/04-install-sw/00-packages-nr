@@ -9,6 +9,7 @@ patchage
 aconnectgui
 realvnc-vnc-server
 xserver-xorg-video-fbdev xserver-xorg xinit xserver-xorg-video-fbturbo xserver-xorg-legacy xscreensaver
+mousepad
 lxde lxtask menu-xdg # gksu
 xdg-utils gvfs-backends gvfs-fuse
 lightdm gnome-themes-standard-data gnome-icon-theme

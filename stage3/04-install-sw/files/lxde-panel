@@ -34,7 +34,7 @@ Plugin {
 Plugin {
   type=menu
   Config {
-    image=/usr/share/images/blokas-logo.svg
+    image=blokas-logo
     system {
     }
     separator {
