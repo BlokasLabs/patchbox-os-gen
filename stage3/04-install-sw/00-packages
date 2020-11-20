@@ -1,5 +1,8 @@
 #sonic-pi
 pianoteq-standard-trial
+blokas-telemetry
 blokas-puredata-patches
 patchbox
 patchbox-cli
+
+#raspberrypi-kernel-rt
