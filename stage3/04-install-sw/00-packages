@@ -8,3 +8,4 @@ patchbox
 patchbox-cli
 raspberrypi-kernel-rt
 userconf-pi
+libgtk-3-bin
