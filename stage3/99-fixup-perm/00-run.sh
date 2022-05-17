@@ -4,5 +4,7 @@ on_chroot << EOF
 
 	chmod -R 777 /usr/local/puredata-patches
 
+	apt-get update
+	apt-get upgrade -y
 	apt-get autoremove -y
 EOF
