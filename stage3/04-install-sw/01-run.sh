@@ -19,4 +19,4 @@ mv ${ROOTFS_DIR}/usr/share/applications/SuperColliderIDE.desktop ${ROOTFS_DIR}/u
 
 # Copy preconfigured Pianoteq settings.
 mkdir -p ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.config/Modartt
-cp files/Pianoteq66.prefs ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.config/Modartt/
+cp files/Pianoteq75.prefs ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.config/Modartt/
