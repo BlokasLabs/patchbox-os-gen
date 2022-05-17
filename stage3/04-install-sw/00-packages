@@ -1,6 +1,6 @@
 chromium-browser rpi-chromium-mods
 raspberrypi-ui-mods gnome-themes-standard-data gtk2-engines
-#sonic-pi
+sonic-pi
 pianoteq-standard-trial
 blokas-puredata-patches
 blokas-telemetry
