@@ -8,9 +8,13 @@ audacity
 patchage
 aconnectgui
 realvnc-vnc-server
-xserver-xorg-video-fbdev xserver-xorg xinit xserver-xorg-video-fbturbo xserver-xorg-legacy xscreensaver
+xserver-xorg-video-fbdev xserver-xorg xinit xserver-xorg-video-fbturbo
 mousepad
-lxde lxtask menu-xdg # gksu
-xdg-utils gvfs-backends gvfs-fuse
-lightdm gnome-themes-standard-data gnome-icon-theme
+eom
+lxde lxtask menu-xdg
+zenity xdg-utils
+gvfs-backends gvfs-fuse
+lightdm gnome-themes-extra-data gnome-icon-theme
+gnome-keyring
+
 liblo7 liblo-dev libasound-dev libjack-jackd2-dev
