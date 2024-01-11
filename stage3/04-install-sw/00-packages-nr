@@ -1,0 +1,11 @@
+puredata
+pd-blokas
+pisound-ctl-scripts-puredata
+git
+touchosc2midi
+supercollider sc3-plugins sc3-plugins-server
+audacity
+patchage
+aconnectgui
+realvnc-vnc-server
+liblo7 liblo-dev libasound-dev libjack-jackd2-dev

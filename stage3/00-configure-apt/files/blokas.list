@@ -1,0 +1,1 @@
+deb [signed-by=/usr/share/keyrings/blokas-archive-keyring.gpg] http://apt.blokas.io/ rpi main

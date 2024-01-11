@@ -1,0 +1,8 @@
+#!/bin/sh
+echo "Welcome! Here's some useful resources:"
+echo
+echo "Patchbox OS Docs - https://blokas.io/patchbox-os/docs/"
+echo "Pisound Docs     - https://blokas.io/pisound/docs/"
+echo "Community Forum  - https://community.blokas.io/"
+echo "Telemetry Info   - https://blokas.io/patchbox-os/docs/telemetry/"
+echo

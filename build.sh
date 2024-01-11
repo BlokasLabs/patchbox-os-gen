@@ -247,6 +247,9 @@ export CLEAN
 export IMG_NAME
 export APT_PROXY
 
+export HOSTNAME
+export RT_KERNEL_VERSION
+
 export STAGE
 export STAGE_DIR
 export STAGE_WORK_DIR
