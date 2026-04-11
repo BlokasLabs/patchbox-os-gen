@@ -1,7 +1,15 @@
 #!/bin/bash -e
 
-install -v -d					"${ROOTFS_DIR}/etc/wpa_supplicant"
-install -v -m 600 files/wpa_supplicant.conf	"${ROOTFS_DIR}/etc/wpa_supplicant/"
+# Newer versions of raspberrypi-sys-mods set rfkill.default_state=0 to prevent
+# radiating on 5GHz bands until the WLAN regulatory domain is set.
+# Unfortunately, this also blocks bluetooth, so we whitelist the known
+# on-board BT adapters here.
+
+mkdir -p "${ROOTFS_DIR}/var/lib/systemd/rfkill/"
+#           5                 miniuart 4      miniuart Zero   miniuart other  other
+for addr in 107d50c000.serial 3f215040.serial 20215040.serial fe215040.serial soc; do
+	echo 0 > "${ROOTFS_DIR}/var/lib/systemd/rfkill/platform-${addr}:bluetooth"
+done
 
 if [ -v WPA_COUNTRY ]; then
 	on_chroot <<- EOF
@@ -10,7 +18,6 @@ if [ -v WPA_COUNTRY ]; then
 fi
 
 # Disable wifi on 5GHz models if WPA_COUNTRY is not set
-mkdir -p "${ROOTFS_DIR}/var/lib/systemd/rfkill/"
 if [ -n "$WPA_COUNTRY" ]; then
     echo 0 > "${ROOTFS_DIR}/var/lib/systemd/rfkill/platform-3f300000.mmcnr:wlan"
     echo 0 > "${ROOTFS_DIR}/var/lib/systemd/rfkill/platform-fe300000.mmcnr:wlan"

@@ -5,17 +5,16 @@ Tool used to create Raspberry Pi OS images. (Previously known as Raspbian).
 
 ## Dependencies
 
-pi-gen runs on Debian-based operating systems. Currently it is only supported on
-either Debian Buster or Ubuntu Xenial and is known to have issues building on
-earlier releases of these systems. On other Linux distributions it may be possible
-to use the Docker build described below.
+pi-gen runs on Debian-based operating systems. Currently it is supported on
+Debian Bookworm or later, and Ubuntu 22.04 or later. On other Linux
+distributions it may be possible to use the Docker build described below.
 
 To install the required dependencies for `pi-gen` you should run:
 
 ```bash
-apt-get install coreutils quilt parted qemu-user-static debootstrap zerofree zip \
-dosfstools libarchive-tools libcap2-bin grep rsync xz-utils file git curl bc \
-qemu-utils kpartx gpg pigz
+apt-get install coreutils quilt parted qemu-user-binfmt debootstrap zerofree zip \
+dosfstools e2fsprogs libarchive-tools libcap2-bin grep rsync xz-utils file git curl bc \
+gpg pigz arch-test
 ```
 
 The file `depends` contains a list of tools needed.  The format of this
@@ -327,7 +326,7 @@ PRESERVE_CONTAINER=1 ./build-docker.sh
 ```
 
 There is a possibility that even when running from a docker container, the
-installation of `qemu-user-static` will silently fail when building the image
+installation of `qemu-user-binfmt` will silently fail when building the image
 because `binfmt-support` _must be enabled on the underlying kernel_. An easy
 fix is to ensure `binfmt-support` is installed on the host machine before
 starting the `./build-docker.sh` script (or using your own docker build
@@ -536,7 +535,7 @@ To resolve this, ensure that the following files are available (install them if 
 
 ```
 /lib/modules/$(uname -r)/kernel/fs/binfmt_misc.ko
-/usr/bin/qemu-arm-static
+/usr/bin/qemu-arm
 ```
 
 You may also need to load the module by hand - run `modprobe binfmt_misc`.

@@ -70,3 +70,13 @@ usermod --pass='*' root
 EOF
 
 rm -f "${ROOTFS_DIR}/etc/ssh/"ssh_host_*_key*
+
+sed -i 's/^FONTFACE=.*/FONTFACE=""/;s/^FONTSIZE=.*/FONTSIZE=""/' "${ROOTFS_DIR}/etc/default/console-setup"
+sed -i "s/PLACEHOLDER//" "${ROOTFS_DIR}/etc/default/keyboard"
+on_chroot << EOF
+DEBIAN_FRONTEND=noninteractive dpkg-reconfigure keyboard-configuration console-setup
+EOF
+
+if [ -e "${ROOTFS_DIR}/etc/avahi/avahi-daemon.conf" ]; then
+  sed -i 's/^#\?publish-workstation=.*/publish-workstation=yes/' "${ROOTFS_DIR}/etc/avahi/avahi-daemon.conf"
+fi

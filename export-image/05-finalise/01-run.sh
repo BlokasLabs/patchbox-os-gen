@@ -2,21 +2,28 @@
 
 IMG_FILE="${STAGE_WORK_DIR}/${IMG_FILENAME}${IMG_SUFFIX}.img"
 INFO_FILE="${STAGE_WORK_DIR}/${IMG_FILENAME}${IMG_SUFFIX}.info"
+SBOM_FILE="${STAGE_WORK_DIR}/${IMG_FILENAME}${IMG_SUFFIX}.sbom"
+BMAP_FILE="${STAGE_WORK_DIR}/${IMG_FILENAME}${IMG_SUFFIX}.bmap"
 
-sed -i 's/^update_initramfs=.*/update_initramfs=all/' "${ROOTFS_DIR}/etc/initramfs-tools/update-initramfs.conf"
-
-on_chroot << EOF
-update-initramfs -u
-if [ -x /etc/init.d/fake-hwclock ]; then
-	/etc/init.d/fake-hwclock stop
-fi
-if hash hardlink 2>/dev/null; then
-	hardlink -t /usr/share/doc
-fi
+on_chroot <<- EOF
+	update-initramfs -k all -c
+	if hash hardlink 2>/dev/null; then
+		hardlink -t /usr/share/doc
+	fi
+	if [ -f /usr/lib/systemd/system/apt-listchanges.service ]; then
+		python3 -m apt_listchanges.populate_database --profile apt
+		systemctl disable apt-listchanges.timer
+	fi
+	if [ -x /etc/init.d/fake-hwclock ]; then
+		/etc/init.d/fake-hwclock stop
+	fi
+	install -m 755 -o systemd-timesync -g systemd-timesync -d /var/lib/systemd/timesync
+	install -m 644 -o systemd-timesync -g systemd-timesync /dev/null /var/lib/systemd/timesync/clock
 EOF
 
-if [ -d "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.config" ]; then
-	chmod 700 "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.config"
+if [ -f "${ROOTFS_DIR}/etc/initramfs-tools/update-initramfs.conf" ]; then
+	sed -i 's/^update_initramfs=.*/update_initramfs=yes/' "${ROOTFS_DIR}/etc/initramfs-tools/update-initramfs.conf"
+	sed -i 's/^MODULES=.*/MODULES=dep/' "${ROOTFS_DIR}/etc/initramfs-tools/initramfs.conf"
 fi
 
 rm -f "${ROOTFS_DIR}/usr/bin/qemu-arm-static"
@@ -46,7 +53,7 @@ rm -f "${ROOTFS_DIR}"/usr/share/icons/*/icon-theme.cache
 
 rm -f "${ROOTFS_DIR}/var/lib/dbus/machine-id"
 
-true > "${ROOTFS_DIR}/etc/machine-id"
+echo "uninitialized" > "${ROOTFS_DIR}/etc/machine-id"
 
 ln -nsf /proc/mounts "${ROOTFS_DIR}/etc/mtab"
 
@@ -102,6 +109,20 @@ else
 	make_bootable_image "${STAGE_WORK_DIR}/${IMG_FILENAME}${IMG_SUFFIX}.qcow2" "$IMG_FILE"
 fi
 
+if hash syft 2>/dev/null; then
+	syft scan dir:"${ROOTFS_DIR}" \
+		--base-path="${ROOTFS_DIR}" \
+		--source-name="${IMG_NAME}${IMG_SUFFIX}" \
+		--source-version="${IMG_DATE}" \
+		-o spdx-json="${SBOM_FILE}"
+fi
+
+if hash bmaptool 2>/dev/null; then
+	bmaptool create \
+		-o "${BMAP_FILE}" \
+		"${IMG_FILE}"
+fi
+
 case "${DEPLOY_COMPRESSION}" in
 zip)
 	pushd "${STAGE_WORK_DIR}" > /dev/null
@@ -121,3 +142,10 @@ none | *)
 	cp "$IMG_FILE" "$DEPLOY_DIR/"
 ;;
 esac
+
+if [ -f "${SBOM_FILE}" ]; then
+	xz -c "${SBOM_FILE}" > "$DEPLOY_DIR/$(basename "${SBOM_FILE}").xz"
+fi
+if [ -f "${BMAP_FILE}" ]; then
+	cp "$BMAP_FILE" "$DEPLOY_DIR/"
+fi
